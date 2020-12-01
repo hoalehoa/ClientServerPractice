@@ -1,0 +1,51 @@
+﻿<Window x:Class="ClientServerPractice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientServerPractice"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <Label Content="Chat Name:" VerticalAlignment="Center"></Label>
+            <TextBox VerticalAlignment="Center" Width="150" Height="35" BorderBrush="Black" Text="{Binding ChatName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button HorizontalAlignment="Right" Margin="10,10,30,30" VerticalAlignment="center" Background="lightblue" Content="Connect" Command="{Binding ConnectBtn}" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Button HorizontalAlignment="Center" Width="300"  Margin="10,20,10,20" VerticalAlignment="center" Background="lightblue" Content="Send" Command="{Binding SendBtn}" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <Label Content="Message:" VerticalAlignment="Center"></Label>
+            <TextBox VerticalAlignment="Center" Width="300" Height="35" BorderBrush="Black" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <ListBox Name="Msgdisplay" BorderBrush="Black" Height="250" ItemsSource="{Binding MsgDisplay}"></ListBox>
+        </StackPanel>
+       
+    </Grid>
+</Window>
